@@ -18,6 +18,15 @@ except IOError as e:
     print("Cannot create the destination file: ", strerror(e.errno))
     exit(e.errno)
 
-print(dict, 'byte(s) succesfully written')
-print("sorted:", dict(sorted(dictn.items(), key=lambda item: item[1], reverse=True)))
+print(dictn)
+sorteddict=dict(sorted(dictn.items(), key=lambda item: item[1], reverse=True))
+print("sorted:", sorteddict)
 src.close()
+
+try:
+    dest = open("tzop.txt.hist", 'wt')
+    dest.write(sorteddict.__str__())
+    dest.close()
+except IOError as e:
+    print("Cannot open the dest file: ", strerror(e.errno))
+    exit(e.errno)
